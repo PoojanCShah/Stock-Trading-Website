@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Investments</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='investments.css') }}">
+</head>
+
+<body class = "body">
+    <header>
+
+        <h1 class="logo">
+            Alfaquant
+        </h1>
+
+    </header>
+    <div class="sidemenu">
+        {% if islogin %}
+        <ul>
+            <li>
+                <a href="{{url_for('logout')}}">
+                    <span class="icon"><ion-icon name="log-out"></ion-icon> </span>
+                    <span class="text"> Logout</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="person"></ion-icon></ion-icon> </span>
+                    <span class="text"> {{username}} </span>
+                </a>
+            </li>
+        </ul>
+        {% else %}        
+        <ul>
+            <li>
+                <a href="{{url_for('login')}}">
+                    <span class="icon"><ion-icon name="log-in"></ion-icon> </span>
+                    <span class="text"> Login</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="home"></ion-icon></ion-icon> </span>
+                    <span class="text"> Home </span>
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+        <ul>
+            <li>
+                <a href="{{url_for('dashboard')}}">
+                    <span class="icon"><ion-icon name="stats-chart"></ion-icon></ion-icon> </span>
+                    <span class="text"> Dashboard</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('livemarket')}}">
+                    <span class="icon"><ion-icon name="trending-up"></ion-icon></ion-icon> </span>
+                    <span class="text"> Live Market</span>
+                </a>
+     
+           </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('investments')}}">
+                    <span class="icon"><ion-icon name="logo-usd"></ion-icon></ion-icon> </span>
+                    <span class="text"> Investments </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <form  method="post">
+        <nav class = "form" style = "position: absolute; top : 20%;">
+            <label><b>Your Earnings:</b></label>
+            {% if earnings >= 0 %}
+            <label style="color : green;">{{earnings}}</label>
+            {% else %}
+            <label style="color : red;">{{earnings}}</label>
+            {% endif %}
+        <label>Stocks:</label>
+        <select name="symbol">
+        {% for sym in symbols %}
+            <option value="{{sym}}">{{sym}}</option>
+        {% endfor %}
+        </select>
+        <label>Shares:</label>
+        <input type="number" name="quantity" placeholder="1">
+        <button  class = "buybutton" type="submit" name="idx" value="-1">Buy Stock</button>
+        </nav>
+   
+        <table class = "table">
+            <tr>
+                <th class = "th">Date</th>
+                <th class = "th">Symbol</th>
+                <th class = "th">Purchased Price</th>
+                <th class = "th">Quantity</th>
+                <th class = "th">Current Price</th>
+                <th class = "th">Profit</th>
+                <th class = "th">Profit Percentage</th>
+                <th></th>
+            </tr>
+            {% for investment in stocks %}
+            <tr class="{{investment.color}}">
+                <td class = "tr">{{investment.date}}</td>
+                <td class = "tr">{{investment.symbol}}</td>
+                <td class = "tr">{{investment.price_when_added}}</td>
+                <td class = "tr">{{investment.quantity}}</td>
+                <td class = "tr">{{investment.current_price}}</td>
+                <td class = "tr">{{investment.profit}}</td>
+                <td class = "tr">{{investment.profit_percent}}</td>
+                <td ><button  class = "sellbutton{{investment.color}}" type="submit" name="idx" value="{{investment.id}}">Sell Stock</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- <table class = "table">
+            {% for investment in stocks %}
+            <tr><td>/td></tr>
+            {% endfor %}
+        </table> -->
+
+    </form>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

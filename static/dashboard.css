@@ -1,0 +1,372 @@
+@keyframes transit
+{
+    from
+    {
+        opacity : 0;
+        transform: rotateX(-10deg);
+    }
+
+    to
+    {
+        opacity : 1;
+        transform: rotateX(0deg);
+    }
+}
+
+input[type=checkbox] + label{
+    display: block;
+    margin: 0.2em;
+}
+input[type=checkbox]{
+    display: none;
+}
+input[type=checkbox] + label:active::before{
+    transform: scale(0);
+}
+input[type=checkbox]+label::before{
+    content: "\2714";
+    border-radius: 0.2em;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    padding-left: 0.2em;
+    padding-bottom: 0.3em;
+    margin-right: 0.2em;
+    vertical-align: bottom;
+    color: transparent;
+    transition: .2s;
+    border: .1em solid black;
+}
+input[type=checkbox]:checked+label::before
+{
+    background-color: mediumseagreen;
+    color: #fff; 
+    border-color: mediumseagreen; 
+}
+.toolbutton
+{
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.logo
+{
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    left : 45%;
+    border-radius: 15px;
+    color : black;
+    font-size : 50px;
+    background-color: white;
+    width : 300px;
+    height : 60px;
+    text-align: center;
+    animation: transit 1s ease-in-out;
+
+    
+
+}
+
+.optionbar
+{
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    color : black;
+    font-size : 20px;
+    left : 30%;
+    top : 15%;
+    width : 900px;
+    text-align: center;
+    animation: transit 1s ease-in-out;
+
+}
+
+.optionbar button
+{
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    background : linear-gradient(57deg,blue, rgba(0, 0, 255, 0.781));
+    border-radius: 10px;
+    color : white;
+    font-size : 20px;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.optionbar button:hover
+{
+    background : linear-gradient(57deg, rgba(0, 0, 255, 0.781), blue);
+    color: white;
+}
+
+.optionbar select
+{
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    background : linear-gradient(57deg, red, rgb(167, 11, 11));
+    border-radius: 10px;
+    color : white;
+    font-size : 20px;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.optionbar select:hover
+{
+    background : linear-gradient(57deg,rgb(167, 11, 11), red);
+    color: white;
+}
+
+.optionbar select option
+{
+    color: black;
+}
+
+.optionbar label ion-icon
+{
+    font-size : 18px;
+    position: relative;
+    bottom : 20%;
+    left: 0%;
+    color : black;
+}
+
+.scroll
+{
+    overflow: auto; max-height: 700px;
+
+}
+
+.sidebar
+{
+    animation: transit 1s ease-in-out;
+    overflow: auto;
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    color : black;
+    font-size : 20px;
+    left : 2.5%;
+    top : 15%;
+    height : 750px;
+ 
+}
+
+.sidemenu
+{
+    animation: transit 1s ease-in-out;
+    position : absolute;
+    width : 60px;
+    height: 98vh;
+    background: white;
+    overflow: hidden;
+    transition: 0.5s;
+    right: 0px;
+    border-radius: 10px;
+    z-index: 3;
+}
+
+.sidemenu:hover
+{
+    width : 330px;
+}
+
+
+
+.sidemenu ul li
+{
+    list-style: none;
+
+}
+
+.sidemenu ul li hover
+
+{
+    background: grey;
+}
+
+.sidemenu ul li a
+{
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+}
+
+.sidemenu ul li a:hover
+{
+    color: #1e4d92;
+}
+
+.sidemenu ul li a .text
+{
+    font-family: 'Monsterrat', sans-serif;
+    font-size : 40px;
+    text-align: center;
+}
+
+.plot
+{
+ position : absolute;
+ left : 60%;
+ top : 70%;
+}
+
+ion-icon {
+    font-size: 40px;
+    position: relative;
+    right: 30px;
+  }
+
+.toolbar
+{
+    animation: transit 1s ease-in-out;
+   font-family: 'Montserrat', sans-serif;
+   position: relative;
+   left : 20%;
+   background : linear-gradient(57deg, #00c6a7, #1e4d92);
+  
+}
+
+.toolbar button ion-icon
+{
+    font-size : 30px;
+    position : relative;
+    left : 0px;
+}
+
+.toolbar button ion-icon:hover
+{
+    color : #1e4d92;
+}
+
+.toolbar label
+{
+    font-size : 30px;
+    border-width: 10px;
+    border-color: black;
+    color : white;
+
+}
+
+.toolbar label:hover
+{
+    color : #1e4d92;
+}
+
+.toolbar input
+{
+    font-size : 30px;
+    width : 200px;
+    height : 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding-left: 10px;
+}
+
+.toolbar select .parameteroption
+{
+    font-size : 30px;
+    width : 200px;
+    height : 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding-left: 10px;
+}
+.parameter
+{
+    font-family: 'Montserrat', sans-serif;
+
+    font-size : 28px;
+    width : 200px;
+    height : 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding-left: 10px;
+   
+}
+
+.table
+{
+    font-family: 'Montserrat', sans-serif;
+    font-size : 20px;
+
+}
+
+.green
+{
+    color: green;
+}
+.red
+{
+    color: red;
+}
+
+.searchbar
+{
+    animation: transit 1s ease-in-out;
+    font-family: sans-serif;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    width : 200px;
+
+}
+
+.searchbar:hover
+{
+    background-color: rgb(248, 244, 244);
+}
+
+.dataframe
+{
+    border-collapse: collapse;
+    background-color:white;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+    position: relative;
+    left: 18%;
+}
+
+.dataframe th
+{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    background-color: #0caf99;
+    color: white;
+    border-right: none;
+}
+
+.dataframe tr
+{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    border-right: none;
+    background: radial-gradient(white,  #fad6f8);
+}
+
+.dataframe tr :hover
+{
+    background : linear-gradient(57deg, #00c6a7, #7ad2c4);
+    color: black ;
+}
+
+
+.body{
+    background-image : linear-gradient(57deg, #00c6a7, #1e4d92);
+}
+/* 
+*{font-family: "Montserrat"; color : white;} */

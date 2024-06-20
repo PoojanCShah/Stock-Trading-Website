@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.3.3.min.js"></script>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <title>Stock Dashboard</title>
+    <script>
+        let plot_data = {{ plot_data | safe}};
+        let symbols = {{ symbols | safe}};
+        let plot_type = "{{ plot_type }}";
+        let type_to_func = {
+            "normal": plot_normal,
+            "relative": plot_relative,
+            "volume": plot_volume,
+            "candlestick": plot_candlestick,
+        };
+        let time_interval = "{{ time_interval }}";
+        document.addEventListener("DOMContentLoaded", function () {
+            check_symbols();
+            let search = document.getElementById("search");
+            search.addEventListener("keyup", hideElements);
+            type_to_func[plot_type]();
+            document.getElementsByName("time_interval")[0].value = time_interval;
+            document.getElementsByName("plot_type")[0].value = plot_type;
+        });
+    </script>
+</head>
+
+<body class = "body">
+    <header>
+
+        <h1 class="logo">
+            Alfaquant
+        </h1>
+
+    </header>
+    <div class="sidemenu">
+        {% if islogin %}
+        <ul>
+            <li>
+                <a href="{{url_for('logout')}}">
+                    <span class="icon"><ion-icon name="log-out"></ion-icon> </span>
+                    <span class="text"> Logout</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="person"></ion-icon></ion-icon> </span>
+                    <span class="text"> {{username}} </span>
+                </a>
+            </li>
+        </ul>
+        {% else %}        
+        <ul>
+            <li>
+                <a href="{{url_for('login')}}">
+                    <span class="icon"><ion-icon name="log-in"></ion-icon> </span>
+                    <span class="text"> Login</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="home"></ion-icon></ion-icon> </span>
+                    <span class="text"> Home </span>
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+        <ul>
+            <li>
+                <a href="{{url_for('dashboard')}}">
+                    <span class="icon"><ion-icon name="stats-chart"></ion-icon></ion-icon> </span>
+                    <span class="text"> Dashboard</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('livemarket')}}">
+                    <span class="icon"><ion-icon name="trending-up"></ion-icon></ion-icon> </span>
+                    <span class="text"> Live Market</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('investments')}}">
+                    <span class="icon"><ion-icon name="logo-usd"></ion-icon></ion-icon> </span>
+                    <span class="text"> Investments </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <form method="post">
+        <div class = "optionbar">
+           
+           
+            <select name="time_interval">
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="quarter">Quarter</option>
+                <option value="halfyear">Half Year</option>
+                <option value="year">Year</option>
+            </select>
+            <label> <ion-icon name="caret-back-outline"></ion-icon> Time Interval</label>
+            <button type="submit">Generate Plot</button>
+        <label>Plot Type <ion-icon name="caret-forward-outline"></ion-icon></label>
+        <select name="plot_type">
+            <option value="normal">Normal</option>
+            <option value="relative">Relative</option>
+            <option value="volume">Volume</option>
+            <option value="candlestick">Candlestick</option>
+
+        </select>
+        </div>
+
+
+        <div style="border-radius: 10px;">
+        <div style = " animation: transit 1s ease-in-out; position: absolute; left : 16%; top : 25%; border-radius: 10px; z-index: 1;" id = "graph">
+            
+        </div>
+        </div>
+        <div class = "sidebar">
+        
+            <!-- <label for="search"></label> -->
+            <input class = "searchbar" type="text" id="search" name="search" placeholder="Search Stock">
+
+            <div class = "scroll">
+            {% for symbol in all_symbols %}
+            <div class="checkbox-group">
+                <input type="checkbox" name="symbols" value="{{ symbol }}" id="{{ symbol }}">
+                <label for="{{ symbol }}">{{ symbol }}</label>
+            </div>
+            {% endfor %}
+            </div>
+        
+        </div>
+
+    </form>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+    <title>Alfaquant - Online Trading</title>
+
+</head>
+
+<body class = "body">
+    <header>
+
+        <h1 class="logo">
+            Alfaquant
+        </h1>
+
+    </header>
+    <div class="sidemenu">
+        {% if islogin %}
+        <ul>
+            <li>
+                <a href="{{url_for('logout')}}">
+                    <span class="icon"><ion-icon name="log-out"></ion-icon> </span>
+                    <span class="text"> Logout</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="person"></ion-icon></ion-icon> </span>
+                    <span class="text"> {{username}} </span>
+                </a>
+            </li>
+        </ul>
+        {% else %}        
+        <ul>
+            <li>
+                <a href="{{url_for('login')}}">
+                    <span class="icon"><ion-icon name="log-in"></ion-icon> </span>
+                    <span class="text"> Login</span>
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+        <ul>
+            <li>
+                <a href="{{url_for('dashboard')}}">
+                    <span class="icon"><ion-icon name="stats-chart"></ion-icon></ion-icon> </span>
+                    <span class="text"> Dashboard</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('livemarket')}}">
+                    <span class="icon"><ion-icon name="trending-up"></ion-icon></ion-icon> </span>
+                    <span class="text"> Live Market</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('investments')}}">
+                    <span class="icon"><ion-icon name="logo-usd"></ion-icon></ion-icon> </span>
+                    <span class="text"> Investments </span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('about')}}">
+                    <span class="icon"><ion-icon name="body"></ion-icon></ion-icon> </span>
+                    <span class="text"> About </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {%if islogin%}
+    <div class = "bigtext">
+        Welcome {{username}} !
+        </div>
+    {% else %}
+    <div class = "bigtext">
+        Stock Trading For Everyone
+        </div>
+    {% endif %}
+
+    <img class = "image" src = "{{ img_path }}" />
+
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+

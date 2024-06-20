@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.3.3.min.js"></script>
+    <script src="{{ url_for('static', filename='live.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='livemarket.css') }}">
+    <title>Stock Dashboard</title>
+    <script>
+        let all_rows = {{ live_data | safe }};
+        let columns = {{ live_data_columns | safe }};
+        let rows = all_rows;
+        let filterable_columns = {{ filterable_columns | safe }};
+        document.addEventListener("DOMContentLoaded", function () {
+            reset();
+        });
+
+    </script>
+</head>
+
+<body class = "body">
+    <header>
+
+        <h1 class="logo">
+            Alfaquant
+        </h1>
+
+    </header>
+    <div class="sidemenu">
+        {% if islogin %}
+        <ul>
+            <li>
+                <a href="{{url_for('logout')}}">
+                    <span class="icon"><ion-icon name="log-out"></ion-icon> </span>
+                    <span class="text"> Logout</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+      
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="person"></ion-icon></ion-icon> </span>
+                    <span class="text"> {{username}} </span>
+                </a>
+            </li>
+        </ul>
+        {% else %}        
+        <ul>
+            <li>
+                <a href="{{url_for('login')}}">
+                    <span class="icon"><ion-icon name="log-in"></ion-icon> </span>
+                    <span class="text"> Login</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="home"></ion-icon></ion-icon> </span>
+                    <span class="text"> Home </span>
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+        <ul>
+            <li>
+                <a href="{{url_for('dashboard')}}">
+                    <span class="icon"><ion-icon name="stats-chart"></ion-icon></ion-icon> </span>
+                    <span class="text"> Dashboard</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('livemarket')}}">
+                    <span class="icon"><ion-icon name="trending-up"></ion-icon></ion-icon> </span>
+                    <span class="text"> Live Market</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('investments')}}">
+                    <span class="icon"><ion-icon name="logo-usd"></ion-icon></ion-icon> </span>
+                    <span class="text"> Investments </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="toolbar" style="background-color: white; border-radius: 10px; border-color: black; width : 1100px; text-align: center; box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);">
+ 
+        <label >Parameter</label>
+   
+       
+        <select class ="parameter" name="filter" id="filter">
+            {% for cols in filterable_columns %}
+            <option class = "parameteroption" value="{{cols}}">{{cols}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="from">From</label>
+        <input type="number" step="0.01" id="from">
+        <label for="to">To</label>
+        <input type="number" step="0.01" id="to">
+        <button type="button" onclick="filter()"><ion-icon name="funnel-outline"></ion-icon></button>
+        <button type="button" onclick="reset()"><ion-icon name="refresh-outline"></ion-icon></button>
+    </div>
+
+
+    
+    <div class="table">
+        <table border="0" class="dataframe">
+            <thead >
+                <tr style="text-align: centre;">
+                    
+                    {% for cols in live_data_columns %}
+                    {% if cols in filterable_columns %}
+                    <th class="ascdesc" onclick="sort_column('{{cols}}')" id="{{cols}}">{{cols}}</th>
+                    {% else %}
+                    <th id="{{cols}}">{{cols}}</th>                    
+                    {% endif %}
+                    {% endfor %}
+                   
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

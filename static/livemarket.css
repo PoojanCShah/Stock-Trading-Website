@@ -1,0 +1,239 @@
+@keyframes transit
+{
+    from
+    {
+        opacity : 0;
+        transform: rotateX(-10deg);
+    }
+
+    to
+    {
+        opacity : 1;
+        transform: rotateX(0deg);
+    }
+}
+
+.asc::after {
+    content: '▲';
+    color: green;
+}
+
+.desc::after {
+    content: '▼';
+    color: red;
+}
+.ascdesc::after {
+    content: '▲▼';
+    color: blue; 
+}
+
+
+
+.toolbutton {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    left: 45%;
+    border-radius: 15px;
+    color: black;
+    font-size: 50px;
+    background-color: white;
+    width: 300px;
+    height: 60px;
+    text-align: center;
+    animation: transit 1s ease-in-out;
+
+
+}
+
+.sidemenu {
+    position: absolute;
+    width: 60px;
+    height: 175vh;
+    background: white;
+    overflow: hidden;
+    transition: 0.5s;
+    right: 0px;
+    border-radius: 10px;
+    z-index: 2;
+    animation: transit 1s ease-in-out;
+}
+
+.sidemenu:hover {
+    width: 330px;
+}
+
+
+
+.sidemenu ul li {
+    list-style: none;
+
+}
+
+.sidemenu ul li hover {
+    background: grey;
+}
+
+.sidemenu ul li a {
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+}
+
+.sidemenu ul li a:hover {
+    color: #1e4d92;
+}
+
+.sidemenu ul li a .text {
+    font-family: 'Monsterrat', sans-serif;
+    font-size: 40px;
+    text-align: center;
+}
+
+.plot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+ion-icon {
+    font-size: 40px;
+    position: relative;
+    right: 30px;
+}
+
+.toolbar {
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    background: linear-gradient(57deg, #00c6a7, #1e4d92);
+    animation: transit 1s ease-in-out;
+    width: fit-content;
+}
+
+.toolbar button ion-icon {
+    font-size: 30px;
+    position: relative;
+    left: 0px;
+}
+
+.toolbar button ion-icon:hover {
+    color: #1e4d92;
+}
+
+.toolbar label {
+    font-size: 30px;
+    border-width: 10px;
+    border-color: black;
+    color: white;
+
+}
+
+.toolbar label:hover {
+    color: #1e4d92;
+}
+
+.toolbar input {
+    font-size: 30px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding-left: 10px;
+}
+
+.toolbar select .parameteroption {
+    font-size: 30px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding-left: 10px;
+}
+
+.parameter {
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 28px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding-left: 10px;
+
+}
+
+.table {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    position: absolute;
+    top: 25%;
+    left: 2.5%;
+
+    z-index: 1;
+    animation: transit 1s ease-in-out;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.dataframe {
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    left: 18%;
+    animation: transit 1s ease-in-out;
+
+}
+
+.scroll {
+    max-height: 50px; 
+    overflow: auto;  
+}
+
+.dataframe th {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    background-color: #0caf99;
+    color: white;
+    border-right: none;
+}
+
+.dataframe tr {
+
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    border-right: none;
+    background: radial-gradient(white, rgb(247, 247, 247));
+}
+
+.dataframe tr :hover {
+    background: linear-gradient(57deg, #00c6a7, #7ad2c4);
+    color: black;
+}
+
+
+.body {
+    background-image: linear-gradient(57deg, #00c6a7, #1e4d92);
+}
+
+/* 
+*{font-family: "Montserrat"; color : white;} */

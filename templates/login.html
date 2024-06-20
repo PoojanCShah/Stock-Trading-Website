@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Stylish Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+
+</head>
+
+<body class="body">
+    <!-- <header class = "logo">
+   
+            Alfaquant
+     
+        </header> -->
+    <div class="sidemenu">
+        <ul>
+            <li>
+                <a href="{{url_for('homepage')}}">
+                    <span class="icon"><ion-icon name="home"></ion-icon> </span>
+                    <span class="text"> Home</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <a href="{{url_for('dashboard')}}">
+                    <span class="icon"><ion-icon name="stats-chart"></ion-icon></ion-icon> </span>
+                    <span class="text"> Dashboard</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('livemarket')}}">
+                    <span class="icon"><ion-icon name="trending-up"></ion-icon></ion-icon> </span>
+                    <span class="text"> Live Market</span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="{{url_for('investments')}}">
+                    <span class="icon"><ion-icon name="logo-usd"></ion-icon></ion-icon> </span>
+                    <span class="text"> Investments </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <form class="form" method="POST" action="">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <h2>Log In</h2>
+
+        {{ form.hidden_tag() }}
+        <!-- 
+        <label class = "label" for="username">Username:</label> -->
+        {{ form.username }}
+        <!-- <label class = "label" for="password">Password:</label> -->
+        {{ form.password }}
+
+        <input type="submit" value="Log In">
+
+        <a href="{{ url_for('signup') }}" style=" text-decoration: none;">Not yet registered? sign up</a>
+
+    </form>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+</body>
+
+</html>
